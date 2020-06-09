@@ -14,7 +14,7 @@ EXPOSE 8080
 ARG JAR_FILE=target/websocket-0.0.1.war
 
 # Add the application's jar to the container
-ADD ${JAR_FILE} websocket-0.0.1.war
+ADD ${JAR_FILE} websocket-demo.war
 
 # Run the jar file 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/websocket-demo.war"]
