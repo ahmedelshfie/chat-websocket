@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: websocket-chat
+spec:
+  selector:
+      matchLabels:
+        app: websocket-chat
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: websocket-chat
+    spec:
+      containers:
+        - name: chat
+          image: ahmedelshfie/polls-jenkins:101
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+            
+---
+apiVersion: v1                
+kind: Service                 
+metadata:                     
+  name: websocket-chat           
+  labels:                    
+    app: websocket-chat
+spec:                         
+  type: LoadBalancer               
+  selector:
+    app: chat          
+  ports:                      
+  - name: http
+    port: 8080
+    targetPort: 8080
